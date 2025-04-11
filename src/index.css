@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Add transition for TinderCard */
+.flashcard-tinder {
+  opacity: 1;
+  /* Transition opacity AND potentially transform if needed */
+  transition: opacity 0.2s ease-out, transform 0.3s ease-out; 
+}
+
+/* Class to trigger fade out */
+.flashcard-tinder-fadeout {
+  opacity: 0;
+}
+
+/* Attempt to make it fade *during* swipe-out (might depend on library implementation) */
+/* This selector might need adjustment if the library adds specific classes/styles */
+/* .flashcard-tinder-swiping-away { 
+  opacity: 0;
+} */
