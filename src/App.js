@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import { Box, CssBaseline } from "@mui/material";
+import { Box, CssBaseline, CircularProgress } from "@mui/material";
 
 // Lazy load page components
 const LazyDecksPage = lazy(() => import("./pages/DecksPage"));
@@ -23,8 +23,21 @@ function App() {
             padding: "1rem",
           }}
         >
-          {/* Wrap Routes in Suspense */}
-          <Suspense fallback={<div>Loading...</div>}>
+          {/* Wrap Routes in Suspense, use CircularProgress as fallback */}
+          <Suspense
+            fallback={
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  minHeight: "calc(100vh - 100px)", // Adjust height as needed (viewport minus approx NavBar height)
+                }}
+              >
+                <CircularProgress />
+              </Box>
+            }
+          >
             <Routes>
               <Route path="/" element={<LazyDecksPage />} />
               <Route path="/decks" element={<LazyDecksPage />} />
