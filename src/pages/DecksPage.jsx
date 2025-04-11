@@ -17,12 +17,17 @@ const DecksPage = () => {
       <Grid container spacing={3}>
         {sampleDecks.map((deck) => (
           <Grid item key={deck.id} xs={12} sm={6} md={4}>
-            <CardActionArea component={RouterLink} to={`/deck/${deck.id}`}>
+            <CardActionArea
+              component={RouterLink}
+              to={`/deck/${deck.id}`}
+              sx={{ height: "100%", display: "flex" }}
+            >
               <Card
                 sx={{
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
+                  width: "100%",
                 }}
               >
                 <CardContent sx={{ flexGrow: 1 }}>
