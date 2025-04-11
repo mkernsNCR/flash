@@ -1,9 +1,11 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import DecksPage from "./pages/DecksPage";
-import SwipePage from "./pages/SwipePage";
 import { Box, CssBaseline } from "@mui/material";
+
+// Lazy load page components
+const LazyDecksPage = lazy(() => import("./pages/DecksPage"));
+const LazySwipePage = lazy(() => import("./pages/SwipePage"));
 
 function App() {
   return (
@@ -21,11 +23,14 @@ function App() {
             padding: "1rem",
           }}
         >
-          <Routes>
-            <Route path="/" element={<DecksPage />} />
-            <Route path="/decks" element={<DecksPage />} />
-            <Route path="/deck/:deckId" element={<SwipePage />} />
-          </Routes>
+          {/* Wrap Routes in Suspense */}
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<LazyDecksPage />} />
+              <Route path="/decks" element={<LazyDecksPage />} />
+              <Route path="/deck/:deckId" element={<LazySwipePage />} />
+            </Routes>
+          </Suspense>
         </Box>
       </Box>
     </Router>
