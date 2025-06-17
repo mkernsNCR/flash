@@ -1,8 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+// Use a manual mock for react-router-dom located in __mocks__
+jest.mock("react-router-dom");
+
+test("renders Flashcard Decks heading", async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const heading = await screen.findByText(/Flashcard Decks/i);
+  expect(heading).toBeInTheDocument();
 });
